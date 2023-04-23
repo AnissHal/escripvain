@@ -39,8 +39,8 @@ class _StartupPageState extends State<StartupPage> {
     }
   }
 
-  void editCreateUser() {
-    var res = createUser(uuid as String, usernameTextController.text);
+  void editCreateUser() async {
+    var res = await createUser(uuid as String, usernameTextController.text);
     if (res != null) {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: ((context) => HomePage())));
