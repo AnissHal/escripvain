@@ -40,15 +40,19 @@ class _StartupPageState extends State<StartupPage> {
   }
 
   void editCreateUser() async {
-    var res = await createUser(uuid as String, usernameTextController.text);
-    if (res != null) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: ((context) => HomePage())));
-    } else {
-      setState(() {
-        usernameErrorText = 'Erreur lors de la création';
-      });
-    }
+    createUser(uuid as String, usernameTextController.text).then((value) => {
+          if (value != null)
+            {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: ((context) => HomePage())))
+            }
+          else
+            {
+              setState(() {
+                usernameErrorText = 'Erreur lors de la création';
+              })
+            }
+        });
   }
 
   TextEditingController usernameTextController = TextEditingController();
